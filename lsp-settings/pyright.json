@@ -1,5 +1,4 @@
 {
-  "python.analysis.typeCheckingMode": "basic"
   "python.analysis.typeCheckingMode": "off",
   "python.venvPath": "/Users/sajan.kumar/miniconda3/envs/okto-dataOnboard/bin/python"
 }
