@@ -10,7 +10,6 @@ M.config = function()
 
   lvim.builtin.lsp_lines = true
   vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
-  lvim.builtin.tmux_lualine = false -- WARN: doesn't work with neovim nightly
   lvim.builtin.tmux_lualine = true -- WARN: doesn't work with neovim nightly
   if lvim.builtin.tmux_lualine then
     vim.opt.cmdheight = 0
@@ -31,14 +30,12 @@ M.config = function()
   lvim.builtin.test_runner.runner = "neotest"
   lvim.format_on_save = {
     enabled = true,
-    pattern = "*.rs",
     pattern = "*",
     timeout = 2000,
     filter = require("lvim.lsp.utils").format_filter,
   }
   lvim.builtin.smooth_scroll = "cinnamon"
   lvim.builtin.tree_provider = "neo-tree"
-  lvim.builtin.noice.active = false
   lvim.builtin.noice.active = true
   lvim.builtin.go_programming.active = true
   lvim.builtin.python_programming.active = true

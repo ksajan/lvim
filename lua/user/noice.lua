@@ -56,7 +56,6 @@ M.config = function()
         },
         format_done = {},
       },
-      hover = { enabled = true },
       hover = { enabled = false },
       signature = { enabled = false, auto_open = { enabled = false } },
       override = {
