@@ -122,7 +122,10 @@ M.config = function()
         tabnine:setup {
           max_lines = 1000,
           max_num_results = 10,
+          max_num_results = 20,
           sort = true,
+          run_on_every_keystroke = true,
+          snippet_placeholder = "..",
         }
       end,
       lazy = true,
@@ -779,6 +782,11 @@ M.config = function()
       end,
       event = "VeryLazy",
       enabled = lvim.builtin.mind.active,
+    },
+    {
+      "neoclide/coc.nvim",
+      branch = "release",
+      event = "VeryLazy",
     },
   }
 end
