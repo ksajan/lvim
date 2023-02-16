@@ -34,11 +34,10 @@ M.config = function()
       name = "catppuccin",
       config = function()
         require("user.theme").catppuccin()
-        lvim.colorscheme = "catppuccin-mocha"
-      end,
-      cond = function()
         local _time = os.date "*t"
-        return (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes
+        if (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes then
+          lvim.colorscheme = "catppuccin-mocha"
+        end
       end,
     },
     {
@@ -140,7 +139,7 @@ M.config = function()
     },
     {
       "kevinhwang91/nvim-bqf",
-      event = "BufReadPost",
+      event = "WinEnter",
       config = function()
         require("user.bqf").config()
       end,
@@ -274,10 +273,14 @@ M.config = function()
     {
       "lervag/vimtex",
       init = function()
-        vim.g.vimtex_view_enabled = true
+        require("user.tex").init()
+      end,
+      config = function()
+        vim.cmd "call vimtex#init()"
       end,
       ft = "tex",
-      lazy = false,
+      event = "VeryLazy",
+      enabled = lvim.builtin.latex.active,
     },
     {
       "nvim-neotest/neotest",
@@ -541,7 +544,7 @@ M.config = function()
         require("user.cle").config()
       end,
       ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
-      enabled = not lvim.builtin.cpp_programming.active,
+      enabled = lvim.builtin.cpp_programming.active,
     },
     {
       "editorconfig/editorconfig-vim",

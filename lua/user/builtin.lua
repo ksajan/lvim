@@ -212,6 +212,12 @@ M.config = function()
     })
   end
 
+  if lvim.builtin.noice.active then
+    local status_ok, noice = pcall(require, "noice.lsp.hover")
+    if status_ok then
+      vim.lsp.handlers["textDocument/hover"] = noice.on_hover
+    end
+  end
   lvim.lsp.buffer_mappings.normal_mode["ga"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" }
   lvim.lsp.buffer_mappings.normal_mode["gI"] = {
     "<cmd>lua require('user.telescope').lsp_implementations()<CR>",
