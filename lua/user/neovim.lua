@@ -36,6 +36,8 @@ M.config = function()
     "algorithm:minimal",
   }
   vim.g.toggle_theme_icon = "   "
+  vim.opt.spelllang = "en_us"
+  vim.opt.spell = true
   vim.opt.wrap = true
   vim.opt.termguicolors = true
   vim.opt.updatetime = 100
