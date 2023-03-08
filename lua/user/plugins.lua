@@ -440,7 +440,11 @@ M.config = function()
     {
       "abzcoding/nvim-mini-file-icons",
       config = function()
-        require("nvim-web-devicons").setup()
+        require("nvim-web-devicons").setup {
+          defaults = true,
+          color_icons = true,
+        }
+        -- require("nvim-web-devicons").get_icons()
       end,
       enabled = lvim.builtin.custom_web_devicons or not lvim.use_icons,
     },
