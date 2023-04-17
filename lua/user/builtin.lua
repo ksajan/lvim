@@ -321,8 +321,10 @@ M.config = function()
       error = kind.icons.error,
     },
   }
-  lvim.builtin.nvimtree.on_config_done = function(_)
-    lvim.builtin.which_key.mappings["e"] = { "<cmd>NvimTreeToggle<CR>", " Explorer" }
+  if lvim.builtin.tree_provider == "nvimtree" then
+    lvim.builtin.nvimtree.on_config_done = function(_)
+      lvim.builtin.which_key.mappings["e"] = { "<cmd>NvimTreeToggle<CR>", " Explorer" }
+    end
   end
   -- lvim.builtin.nvimtree.hide_dotfiles = 0
 
@@ -353,7 +355,7 @@ M.config = function()
   local languages = vim.tbl_flatten {
     { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
     { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
-    { "gomod", "graphql", "hcl", "help", "html", "java", "javascript", "jsdoc" },
+    { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
     { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
     { "markdown", "nix", "ocaml", "perl", "php", "python", "query", "r" },
     { "regex", "rego", "ruby", "rust", "scala", "scss", "solidity", "swift" },
@@ -571,6 +573,8 @@ M.config = function()
     end,
     find_command = { "fd", "--type=file", "--hidden" },
   }
+  lvim.builtin.telescope.pickers.buffers.sort_lastused = true
+  lvim.builtin.telescope.pickers.buffers.sort_mru = true
   lvim.builtin.telescope.on_config_done = function(telescope)
     telescope.load_extension "file_create"
     if lvim.builtin.file_browser.active then
