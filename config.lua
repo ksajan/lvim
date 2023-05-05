@@ -1,7 +1,7 @@
 -- Neovim
 -- =========================================
 lvim.leader = " "
-lvim.colorscheme = "tokyonight" -- set to a custom theme
+lvim.colorscheme = "catppuccin" -- set to a custom theme
 lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = false -- enable/disable transparency
 lvim.debug = false
@@ -11,7 +11,7 @@ lvim.log.level = "warn"
 require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
 lvim.lsp.diagnostics.virtual_text = false -- remove this line if you want to see inline errors
-lvim.lsp.installer.setup.automatic_installation = false
+lvim.lsp.installer.setup.automatic_installation = true
 
 -- Customization
 -- =========================================
@@ -31,7 +31,7 @@ lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 lvim.builtin.smooth_scroll = "cinnamon" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
-lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
+lvim.builtin.nonumber_unfocus = true -- diffrentiate between focused and non focused windowsgg
 lvim.builtin.custom_web_devicons = true -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 lvim.builtin.remote_dev = { active = false } -- enable/disable remote development
@@ -83,7 +83,7 @@ lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable 
 -- Custom User Config
 -- =========================================
 local user = vim.env.USER
-if user and user == "sajan.kumar" then
+if user and user == "bruce" then
   lvim.reload_config_on_save = true
   require("user.custom_user").config()
 end
@@ -93,7 +93,7 @@ end
 if lvim.builtin.winbar_provider == "navic" then
   vim.opt.showtabline = 1
   lvim.keys.normal_mode["<tab>"] =
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
+  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
   lvim.builtin.bufferline.active = false
   lvim.builtin.breadcrumbs.active = true
 end
