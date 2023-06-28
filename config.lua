@@ -83,7 +83,7 @@ lvim.builtin.mind = { active = true, root_path = "~/.mind" } -- enable/disable m
 -- Custom User Config
 -- =========================================
 local user = vim.env.USER
-if user and user == "bruce" then
+if user and user == "sajan.kumar" then
   lvim.reload_config_on_save = true
   require("user.custom_user").config()
 end
