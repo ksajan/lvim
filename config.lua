@@ -9,8 +9,8 @@ vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
-lvim.lsp.diagnostics.virtual_text = false -- remove this line if you want to see inline errors
-lvim.lsp.installer.setup.automatic_installation = true
+-- lvim.lsp.diagnostics.virtual_text = false -- remove this line if you want to see inline errors
+lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
 -- =========================================
@@ -31,7 +31,7 @@ lvim.builtin.sql_integration = { active = false } -- use sql integration
 lvim.builtin.smooth_scroll = "cinnamon" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
 lvim.builtin.nonumber_unfocus = true -- diffrentiate between focused and non focused windowsgg
-lvim.builtin.custom_web_devicons = true -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
+lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 lvim.builtin.remote_dev = { active = false } -- enable/disable remote development
 lvim.builtin.cursorline = { active = true } -- use a bit fancier cursorline
@@ -57,7 +57,8 @@ lvim.builtin.refactoring = { active = true } -- enable to use refactoring.nvim c
 lvim.builtin.tmux_lualine = true -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.lsp_lines = true -- enable/disable lsp_lines to display lsp virtual text below instead of behind
 if lvim.builtin.lsp_lines then
-  lvim.lsp.diagnostics.virtual_text = false
+  -- lvim.lsp.diagnostics.virtual_text = false
+  vim.diagnostic.config { virtual_text = false }
 end
 lvim.builtin.legendary = { active = true } -- enable/disable legendary plugin ( ctrl-p command )
 lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
@@ -78,7 +79,7 @@ lvim.builtin.bigfile.active = true
 -- WARN: mind plugin is deprecated ( use with caution )
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
 lvim.builtin.inlay_hints = { active = true } -- enable/disable inlay hints
-lvim.builtin.mind = { active = true, root_path = "~/.mind" } -- enable/disable mind.nvim
+-- lvim.builtin.mind = { active = true, root_path = "~/.mind" } -- enable/disable mind.nvim
 
 -- Custom User Config
 -- =========================================
@@ -93,7 +94,7 @@ end
 if lvim.builtin.winbar_provider == "navic" then
   vim.opt.showtabline = 1
   lvim.keys.normal_mode["<tab>"] =
-  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
+    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
   lvim.builtin.bufferline.active = false
   lvim.builtin.breadcrumbs.active = true
 end

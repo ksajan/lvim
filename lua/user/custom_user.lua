@@ -9,7 +9,9 @@ M.config = function()
   end
 
   lvim.builtin.lsp_lines = true
-  vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
+  -- vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
+  -- vim.diagnostic.config { virtual_text = false }
+  -- lvim.lsp.diagnostics.virtual_text = false
   lvim.builtin.tmux_lualine = true
   if lvim.builtin.tmux_lualine then
     vim.opt.cmdheight = 0
@@ -20,7 +22,7 @@ M.config = function()
       vim.cmd [[ autocmd WinEnter,BufEnter,VimResized * setlocal laststatus=0 ]]
     end
   end
-  lvim.builtin.custom_web_devicons = true
+  lvim.builtin.custom_web_devicons = false
   lvim.use_icons = true -- only set to false if you know what are you doing
   lvim.builtin.sell_your_soul_to_devil = { active = true, prada = false }
   lvim.lsp.document_highlight = true
