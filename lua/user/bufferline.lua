@@ -30,7 +30,7 @@ M.config = function()
   end
   lvim.builtin.bufferline.options = {
     navigation = { mode = "uncentered" },
-    diagnostics = false, -- do not show diagnostics in bufferline
+    diagnostics = true, -- do not show diagnostics in bufferline
     diagnostics_indicator = function(_, _, diagnostics)
       local result = {}
       local symbols = { error = kind.icons.error, warning = kind.icons.warn, info = kind.icons.info }

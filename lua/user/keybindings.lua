@@ -273,6 +273,9 @@ M.config = function()
   lvim.keys.visual_mode["p"] = [["_dP]]
   lvim.keys.visual_mode["ga"] = "<esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>"
   lvim.keys.visual_mode["<leader>st"] = "<Cmd>lua require('user.telescope').grep_string_visual()<CR>"
+  lvim.keys.normal_mode["<leader>ct"] = "<Cmd>CocDiagnostics<CR>"
+  lvim.keys.normal_mode["<leader>ch"] = "<Cmd>call CocAction('doHover')<CR>"
+  lvim.keys.normal_mode["<leader>cf"] = "<Cmd>call CocActionAsync('codeAction', 'cursor')<CR>"
 
   -- WhichKey keybindings
   -- =========================================
