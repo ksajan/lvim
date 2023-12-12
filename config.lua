@@ -77,11 +77,13 @@ lvim.builtin.cmp.cmdline.enable = true
 lvim.builtin.borderless_cmp = true
 lvim.builtin.colored_args = true -- if true then sets up hlargs.nvim
 lvim.builtin.bigfile.active = true
-lvim.builtin.indentlines.mine = false
+lvim.builtin.indentlines.active = false
+lvim.builtin.indentlines.mine = true -- NOTE: using v3 till fixed upstream in lunarvim
 -- WARN: mind plugin is deprecated ( use with caution )
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
 lvim.builtin.inlay_hints = { active = true } -- enable/disable inlay hints
 -- lvim.builtin.mind = { active = true, root_path = "~/.mind" } -- enable/disable mind.nvim
+lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
 
 -- Custom User Config
 -- =========================================
