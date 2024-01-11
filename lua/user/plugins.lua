@@ -170,7 +170,7 @@ M.config = function()
       enabled = lvim.builtin.rust_programming.active,
     },
     {
-      url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      url = "https://github.com/ksajan/lsp_lines.nvim",
       lazy = true,
       config = function()
         require("lsp_lines").setup()
@@ -842,6 +842,20 @@ M.config = function()
       enabled = lvim.builtin.symbols_usage.active,
       config = function()
         require("user.symbol_use").config()
+      end,
+    },
+    {
+      "nvim-telescope/telescope.nvim",
+      dependencies = {
+        {
+          "nvim-telescope/telescope-live-grep-args.nvim",
+          -- This will not install any breaking changes.
+          -- For major updates, this must be adjusted manually.
+          version = "^1.0.0",
+        },
+      },
+      config = function()
+        require("telescope").load_extension "live_grep_args"
       end,
     },
   }
