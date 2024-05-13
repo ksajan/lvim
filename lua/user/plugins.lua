@@ -143,16 +143,16 @@ M.config = function()
         require("user.bqf").config()
       end,
     },
-    {
-      "andymass/vim-matchup",
-      event = "BufReadPost",
-      config = function()
-        vim.g.matchup_enabled = 1
-        vim.g.matchup_surround_enabled = 1
-        vim.g.matchup_matchparen_deferred = 1
-        vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      end,
-    },
+    -- {
+    --   "andymass/vim-matchup",
+    --   event = "BufReadPost",
+    --   config = function()
+    --     vim.g.matchup_enabled = 1
+    --     vim.g.matchup_surround_enabled = 1
+    --     vim.g.matchup_matchparen_deferred = 1
+    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    --   end,
+    -- },
     {
       "iamcco/markdown-preview.nvim",
       build = "cd app && npm install",
@@ -241,22 +241,27 @@ M.config = function()
       end,
       enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
     },
+    -- {
+    --   -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
+    --   "jose-elias-alvarez/typescript.nvim",
+    --   ft = {
+    --     "javascript",
+    --     "javascriptreact",
+    --     "javascript.jsx",
+    --     "typescript",
+    --     "typescriptreact",
+    --     "typescript.tsx",
+    --   },
+    --   lazy = true,
+    --   config = function()
+    --     require("user.tss").config()
+    --   end,
+    --   enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
+    -- },
     {
-      -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
-      "jose-elias-alvarez/typescript.nvim",
-      ft = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-      },
-      lazy = true,
-      config = function()
-        require("user.tss").config()
-      end,
-      enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      opts = {},
     },
     {
       "vuki656/package-info.nvim",
@@ -469,12 +474,12 @@ M.config = function()
       ft = { "csv" },
       enabled = lvim.builtin.csv_support,
     },
-    {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      lazy = true,
-      event = "BufReadPre",
-      dependencies = "nvim-treesitter",
-    },
+    -- {
+    --   "nvim-treesitter/nvim-treesitter-textobjects",
+    --   lazy = true,
+    --   event = "BufReadPre",
+    --   dependencies = "nvim-treesitter",
+    -- },
     {
       "sidebar-nvim/sidebar.nvim",
       config = function()
@@ -873,6 +878,48 @@ M.config = function()
       end,
       enabled = not lvim.builtin.bigfile.active,
     },
+    {
+      "nvim-telescope/telescope.nvim",
+      dependencies = {
+        {
+          "nvim-telescope/telescope-live-grep-args.nvim",
+          -- This will not install any breaking changes.
+          -- For major updates, this must be adjusted manually.
+          version = "^1.0.0",
+        },
+      },
+      config = function()
+        require("telescope").load_extension "live_grep_args"
+      end,
+    },
+    -- {
+    --   "mfussenegger/nvim-lint",
+    --   enabled = lvim.builtin.lint.active,
+    --   config = function()
+    --     local lint = require "lint"
+    --     lint.linters_by_ft = {
+    --       go = { "golangci-lint", "revive" },
+    --     }
+    --     vim.api.nvim_create_autocmd({
+    --       "BufWritePost",
+    --       "InsertLeave",
+    --       "TextChanged",
+    --       "BufReadPost",
+    --     }, {
+    --       group = vim.api.nvim_create_augroup("Linting", { clear = true }),
+    --       callback = function(ev)
+    --         -- print(string.format('event fired: %s', vim.inspect(ev)))
+    --         if string.find(ev.file, ".github/workflows/") and vim.bo.filetype == "yaml" then
+    --           lint.try_lint "actionlint"
+    --         elseif vim.bo.filetype == "yaml" then
+    --           lint.try_lint "yamllint"
+    --         else
+    --           lint.try_lint()
+    --         end
+    --       end,
+    --     })
+    --   end,
+    -- },
   }
 end
 
