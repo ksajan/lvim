@@ -28,7 +28,7 @@ lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/
 lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = true } -- use sql integration
-lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
+lvim.builtin.smooth_scroll = "neoscroll" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
 lvim.builtin.nonumber_unfocus = true -- diffrentiate between focused and non focused windows
 lvim.builtin.custom_web_devicons = true -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
@@ -57,10 +57,10 @@ lvim.builtin.refactoring = { active = true } -- enable to use refactoring.nvim c
 lvim.builtin.tmux_lualine = true -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.lsp_lines = true -- enable/disable lsp_lines to display lsp virtual text below instead of behind
 lvim.builtin.legendary = { active = true } -- enable/disable legendary plugin ( ctrl-p command )
-lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
+lvim.builtin.tree_provider = "neo-tree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.lir.active = true
 lvim.builtin.breadcrumbs.active = true
-lvim.builtin.illuminate.active = true
+lvim.builtin.illuminate.active = true -- enable/disable illuminate.nvim
 lvim.builtin.noice = { active = true } -- enables noice.nvim and inc-rename.nvim
 lvim.builtin.go_programming = { active = true } -- gopher.nvim + nvim-dap-go
 lvim.builtin.python_programming = { active = true } -- swenv.nvim + nvim-dap-python + requirements.txt.vim
@@ -131,14 +131,14 @@ end
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
   "clangd",
   "dockerls",
-  "gopls",
-  "golangci_lint_ls",
+  -- "gopls",
+  -- "golangci_lint_ls",
   "jdtls",
-  "pyright",
-  "rust_analyzer",
+  -- "pyright",
+  -- "rust_analyzer",
   "taplo",
   "texlab",
-  "tsserver",
+  -- "tsserver",
   "yamlls",
 })
 require("user.null_ls").config()

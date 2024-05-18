@@ -19,7 +19,7 @@ M.config = function()
     vim.g.tpipeline_cursormoved = 1
     -- HACK: lualine hijacks the statusline, so we need to set it back to what we want
     if vim.env.TMUX then
-      vim.cmd [[ autocmd WinEnter,BufEnter,VimResized * setlocal laststatus=0 ]]
+      vim.cmd [[ autocmd WinEnter,BufEnter,VimResized,Filetype * setlocal laststatus=0 ]]
     end
   end
   lvim.builtin.custom_web_devicons = false
@@ -48,15 +48,18 @@ M.config = function()
   lvim.builtin.go_programming.active = true
   lvim.builtin.python_programming.active = true
   lvim.builtin.web_programming.active = true
+  -- lvim.builtin.web_programming.extra = "typescript-tools.nvim"
   lvim.builtin.rust_programming.active = true
   lvim.builtin.cpp_programming.active = true
   lvim.builtin.borderless_cmp = true
   lvim.builtin.colored_args = true
   lvim.reload_config_on_save = false -- NOTE: i don't like this
-  lvim.builtin.mind.active = false
+  lvim.builtin.mind.active = true
   lvim.builtin.motion_provider = "flash"
   lvim.builtin.harpoon.active = true
   lvim.builtin.symbols_usage.active = true
+  lvim.builtin.tag_provider = "outline"
+  lvim.builtin.bigfile.active = false
   -- require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end
 

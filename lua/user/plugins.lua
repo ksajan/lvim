@@ -145,16 +145,16 @@ M.config = function()
         require("user.bqf").config()
       end,
     },
-    {
-      "andymass/vim-matchup",
-      event = "BufReadPost",
-      config = function()
-        vim.g.matchup_enabled = 1
-        vim.g.matchup_surround_enabled = 1
-        vim.g.matchup_matchparen_deferred = 1
-        vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      end,
-    },
+    -- {
+    --   "andymass/vim-matchup",
+    --   event = "BufReadPost",
+    --   config = function()
+    --     vim.g.matchup_enabled = 1
+    --     vim.g.matchup_surround_enabled = 1
+    --     vim.g.matchup_matchparen_deferred = 1
+    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    --   end,
+    -- },
     {
       "iamcco/markdown-preview.nvim",
       build = "cd app && npm install",
@@ -170,7 +170,7 @@ M.config = function()
       enabled = lvim.builtin.rust_programming.active,
     },
     {
-      url = "https://github.com/ksajan/lsp_lines.nvim",
+      "abzcoding/lsp_lines.nvim",
       lazy = true,
       config = function()
         require("lsp_lines").setup()
@@ -186,7 +186,7 @@ M.config = function()
       end,
     },
     {
-      "windwp/nvim-spectre",
+      "nvim-pack/nvim-spectre",
       lazy = true,
       config = function()
         require("user.spectre").config()
@@ -243,21 +243,27 @@ M.config = function()
       end,
       enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
     },
+    -- {
+    --   -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
+    --   "jose-elias-alvarez/typescript.nvim",
+    --   ft = {
+    --     "javascript",
+    --     "javascriptreact",
+    --     "javascript.jsx",
+    --     "typescript",
+    --     "typescriptreact",
+    --     "typescript.tsx",
+    --   },
+    --   lazy = true,
+    --   config = function()
+    --     require("user.tss").config()
+    --   end,
+    --   enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
+    -- },
     {
-      "jose-elias-alvarez/typescript.nvim",
-      ft = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-      },
-      lazy = true,
-      config = function()
-        require("user.tss").config()
-      end,
-      enabled = lvim.builtin.web_programming.active,
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      opts = {},
     },
     {
       "vuki656/package-info.nvim",
@@ -474,12 +480,12 @@ M.config = function()
       ft = { "csv" },
       enabled = lvim.builtin.csv_support,
     },
-    {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      lazy = true,
-      event = "BufReadPre",
-      dependencies = "nvim-treesitter",
-    },
+    -- {
+    --   "nvim-treesitter/nvim-treesitter-textobjects",
+    --   lazy = true,
+    --   event = "BufReadPre",
+    --   dependencies = "nvim-treesitter",
+    -- },
     {
       "sidebar-nvim/sidebar.nvim",
       config = function()
@@ -764,8 +770,7 @@ M.config = function()
       enabled = lvim.builtin.python_programming.active,
     },
     {
-      "phaazon/mind.nvim",
-      branch = "v2.2",
+      "Selyss/mind.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
         require("user.mind").config()
@@ -845,6 +850,41 @@ M.config = function()
       end,
     },
     {
+      "hedyhli/outline.nvim",
+      config = function()
+        require("user.outline").config()
+      end,
+      event = "BufReadPost",
+      enabled = lvim.builtin.tag_provider == "outline",
+    },
+    {
+      "pmizio/typescript-tools.nvim",
+      ft = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+      lazy = true,
+      config = function()
+        require("user.typtools").config()
+      end,
+      enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
+    },
+    {
+      "nvim-neotest/nvim-nio",
+      enabled = lvim.builtin.dap.active,
+    },
+    {
+      "mireq/large_file",
+      config = function()
+        require("large_file").setup()
+      end,
+      enabled = not lvim.builtin.bigfile.active,
+    },
+    {
       "nvim-telescope/telescope.nvim",
       dependencies = {
         {
@@ -858,6 +898,34 @@ M.config = function()
         require("telescope").load_extension "live_grep_args"
       end,
     },
+    -- {
+    --   "mfussenegger/nvim-lint",
+    --   enabled = lvim.builtin.lint.active,
+    --   config = function()
+    --     local lint = require "lint"
+    --     lint.linters_by_ft = {
+    --       go = { "golangci-lint", "revive" },
+    --     }
+    --     vim.api.nvim_create_autocmd({
+    --       "BufWritePost",
+    --       "InsertLeave",
+    --       "TextChanged",
+    --       "BufReadPost",
+    --     }, {
+    --       group = vim.api.nvim_create_augroup("Linting", { clear = true }),
+    --       callback = function(ev)
+    --         -- print(string.format('event fired: %s', vim.inspect(ev)))
+    --         if string.find(ev.file, ".github/workflows/") and vim.bo.filetype == "yaml" then
+    --           lint.try_lint "actionlint"
+    --         elseif vim.bo.filetype == "yaml" then
+    --           lint.try_lint "yamllint"
+    --         else
+    --           lint.try_lint()
+    --         end
+    --       end,
+    --     })
+    --   end,
+    -- },
   }
 end
 
